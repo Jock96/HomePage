@@ -19,3 +19,15 @@ export function getAllAnimationTypes() {
     }
     return animationList;
 }
+
+/**
+ * Получить библиотеку анимации по имени
+ * @param name Имя анимации
+ */
+export function getAnimationLibraryByName(name: string) {
+    if (isAnimationExist(name)) {
+        for (const key in animationTypes) {
+            if (key === name) return animationTypes[key];
+        }
+    }
+}

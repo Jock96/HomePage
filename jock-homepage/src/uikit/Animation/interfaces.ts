@@ -9,3 +9,9 @@ export interface AnimationSettings {
     /** Имя анимации */
     name: string;
 }
+
+/** Пропсы обёртки анимации */
+export interface AnimationWrapperProps {
+    /** Настройки анимации */
+    animationSettings?: AnimationSettings;
+}

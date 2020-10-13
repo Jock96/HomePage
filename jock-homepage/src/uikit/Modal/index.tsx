@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
+import AnimationWrapper from '../Animation';
 import Portal from '../Portal';
 import { ModalProps } from './interfaces';
 import ModalOverlay from './shared/ModalOverlay';
-import { MainContainer, AnimationContainer } from './styles';
+import { MainContainer } from './styles';
 
 /** Компонент модального окна */
 const Modal: FC<ModalProps> = (props) => {
@@ -10,21 +11,11 @@ const Modal: FC<ModalProps> = (props) => {
     return isOpen ? ( 
         <Portal>
             <ModalOverlay>
-                {animationSettings ? 
-                    (
-                        <AnimationContainer>
-                            <MainContainer>
-                                {children}
-                            </MainContainer>
-                        </AnimationContainer>
-                    )
-                    :
-                    (
-                        <MainContainer>
-                            {children}
-                        </MainContainer>
-                    )
-                }
+                <AnimationWrapper animationSettings={animationSettings}>
+                    <MainContainer>
+                        {children}
+                    </MainContainer>
+                </AnimationWrapper>
             </ModalOverlay>
         </Portal>
     ) : null;
