@@ -1,18 +1,21 @@
 import styled, { keyframes } from 'styled-components';
-import { bounce } from 'react-animations';
+import { pulse } from 'react-animations';
 
 export const MainContainer = styled.div`
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     background-color: #FFF;
-    min-height: 400px;
-    min-width: 600px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 600px;
+    height: 400px;
     border-radius: 12px;
     padding: 4px;
 `;
 
 export const MoveOnAnimationContainer = styled.div`
-    animation: 2s ${keyframes`${bounce}`} 0
+    height: 100%;
+    animation: 2s ${keyframes`${pulse}`} infinite;
 `;
