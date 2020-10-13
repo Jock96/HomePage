@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { pulse } from 'react-animations';
+import { bounceInLeft } from 'react-animations';
 
 export const MainContainer = styled.div`
     position: absolute;
@@ -15,7 +15,7 @@ export const MainContainer = styled.div`
     padding: 4px;
 `;
 
-export const MoveOnAnimationContainer = styled.div`
+export const AnimationContainer = styled.div`
     height: 100%;
-    animation: 2s ${keyframes`${pulse}`} infinite;
+    animation: 2s ${keyframes`${bounceInLeft}`} 1;
 `;

@@ -2,21 +2,21 @@ import React, { FC } from 'react';
 import Portal from '../Portal';
 import { ModalProps } from './interfaces';
 import ModalOverlay from './shared/ModalOverlay';
-import { MainContainer, MoveOnAnimationContainer } from './styles';
+import { MainContainer, AnimationContainer } from './styles';
 
 /** Компонент модального окна */
 const Modal: FC<ModalProps> = (props) => {
-    const { isOpen, isAnimated, children } = props;
+    const { isOpen, animationSettings, children } = props;
     return isOpen ? ( 
         <Portal>
             <ModalOverlay>
-                {isAnimated ? 
+                {animationSettings ? 
                     (
-                        <MoveOnAnimationContainer>
+                        <AnimationContainer>
                             <MainContainer>
                                 {children}
                             </MainContainer>
-                        </MoveOnAnimationContainer>
+                        </AnimationContainer>
                     )
                     :
                     (
