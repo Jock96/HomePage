@@ -1,9 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useCallback } from 'react';
+import { InputProps } from './interfaces';
 import { InputField } from './styles';
 
-const Input: FC = () => {
+/** Компонент ввода */
+const Input: FC<InputProps> = (props) => {
+    const { value, onChange, placeholder } = props;
     return(
-        <InputField />
+        <InputField value={value} onChange={onChange} placeholder={placeholder} />
     );
 }
 
