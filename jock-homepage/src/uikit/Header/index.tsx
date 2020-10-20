@@ -1,17 +1,7 @@
 import React, { FC } from 'react';
 import { HeaderProps, HeaderTypes, StylesExtension } from './interfaces';
-import { Paragraph, Head1, Head2, Head3, Head4, Head5, Head6, GlitchSpan } from './styles';
-
-const GlitchWrapper: FC<StylesExtension> = (props) => {
-    const { children, useGlitch } = props;
-    return useGlitch ? (
-        <>
-            <GlitchSpan aria-hidden={true}>{children}</GlitchSpan>
-            <>{children}</>
-            <GlitchSpan aria-hidden={true}>{children}</GlitchSpan>
-        </>
-    ) : (<>{children}</>);
-}
+import GlitchWrapper from './shared/GlitchWrapper';
+import { Paragraph, Head1, Head2, Head3, Head4, Head5, Head6 } from './styles';
 
 /** Компонент заголовка */
 const Header: FC<HeaderProps> = (props) => {
