@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
+import { ModalOverlayProps } from './interfaces';
 import { MainContainer } from './styles';
 
 /** Оверлей для модалки */
-const ModalOverlay: FC = (props) => {
-    const { children } = props;
+const ModalOverlay: FC<ModalOverlayProps> = (props) => {
+    const { children, backgroundType } = props;
     return(
-        <MainContainer>
+        <MainContainer backgroundType={backgroundType}>
             {children}
         </MainContainer>
     )

@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import Modal from '../uikit/Modal';
+import { BackgroundTypes } from '../uikit/Modal/shared/ModalOverlay/interfaces';
 import { AnimationSettings } from './../uikit/Animation/interfaces';
 import HelloWindow from './HelloWindow';
 
@@ -12,7 +13,7 @@ export const App: FC = ({ children }) => {
 
   return (
     <div>
-      <Modal isOpen animationSettings={modalAnimationSettings}>
+      <Modal backgroundType={BackgroundTypes.IMAGE} isOpen animationSettings={modalAnimationSettings}>
         <HelloWindow />
       </Modal>
       {children}
