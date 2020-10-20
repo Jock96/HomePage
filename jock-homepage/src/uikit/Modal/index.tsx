@@ -7,10 +7,10 @@ import { MainContainer } from './styles';
 
 /** Компонент модального окна */
 const Modal: FC<ModalProps> = (props) => {
-    const { isOpen, animationSettings, children } = props;
+    const { isOpen, animationSettings, children, backgroundType } = props;
     return isOpen ? ( 
         <Portal>
-            <ModalOverlay>
+            <ModalOverlay backgroundType={backgroundType}>
                 <AnimationWrapper animationSettings={animationSettings}>
                     <MainContainer>
                         {children}

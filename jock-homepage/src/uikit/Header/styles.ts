@@ -1,52 +1,59 @@
 import styled, { keyframes, css, FlattenSimpleInterpolation } from 'styled-components';
+import { getRandomEm } from './helpers/randomizer';
 import { StylesExtension } from './interfaces';
 
 const MainStyle = css`
     color: #fff;
 `;
 
+const RedColor = css`rgba(255, 0, 0, 0.75)`;
+const GreenColor = css`rgba(0, 255, 0, 0.75)`;
+const BlueColor = css`rgba(0, 0, 255, 0.75)`;
+
 const GlitchEffect = keyframes`
     0% {
-    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-        -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
-        -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${RedColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${GreenColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${BlueColor};
     }
     14% {
-    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-        -0.05em -0.025em 0 rgba(0, 255, 0, 0.75),
-        -0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${RedColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${GreenColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${BlueColor};
     }
     15% {
-    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
-        0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
-        -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${RedColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${GreenColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${BlueColor};
     }
     49% {
-    text-shadow: -0.05em -0.025em 0 rgba(255, 0, 0, 0.75),
-        0.025em 0.025em 0 rgba(0, 255, 0, 0.75),
-        -0.05em -0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${RedColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${GreenColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${BlueColor};
     }
     50% {
-    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
-        0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${RedColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${GreenColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${BlueColor};
     }
     99% {
-    text-shadow: 0.025em 0.05em 0 rgba(255, 0, 0, 0.75),
-        0.05em 0 0 rgba(0, 255, 0, 0.75), 0 -0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${RedColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${GreenColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${BlueColor};
     }
     100% {
-    text-shadow: -0.025em 0 0 rgba(255, 0, 0, 0.75),
-        -0.025em -0.025em 0 rgba(0, 255, 0, 0.75),
-        -0.025em -0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${RedColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${GreenColor},
+                 ${getRandomEm(0.05, 0.5)} ${getRandomEm(0.05, 0.5)} 0 ${BlueColor};
     }
 `;
 
 const Glitch = css`
     position: relative;
 
-    text-shadow: 0.05em 0 0 rgba(255, 0, 0, 0.75),
-    -0.025em -0.05em 0 rgba(0, 255, 0, 0.75),
-    0.025em 0.05em 0 rgba(0, 0, 255, 0.75);
+    text-shadow: 0.05em 0 0 ${RedColor},
+    -0.025em -0.05em 0 ${GreenColor},
+    0.025em 0.05em 0 ${BlueColor};
 
     animation: ${GlitchEffect} 500ms infinite;
 
@@ -70,12 +77,6 @@ const Glitch = css`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-`;
-
-export const GlitchSpan = styled.span`
-    position: absolute;
-    top: 0;
-    left: 0;
 `;
 
 export const Head1 = styled.h1<StylesExtension>`

@@ -1,65 +1,102 @@
 import React, { FC, useState, useCallback } from 'react';
+import AnimationWrapper from '../../uikit/Animation';
+import { AnimationSettings } from '../../uikit/Animation/interfaces';
 import Header from '../../uikit/Header';
 import { HeaderTypes } from '../../uikit/Header/interfaces';
 import Input from '../../uikit/Input';
-import { InputContainer, Maincontainer } from './styles';
+import { useHelloWindowDataInput } from './hooks/useHelloWindowDataInput';
+import { HelloWindowProps } from './interfaces';
+import { ImageStyled, InputContainer, MainContainer, StubContainer } from './styles';
 
-const HelloWindow: FC = (props) => {
-    const [name, setName] = useState("");
-    const [surname, setSurname] = useState("");
-    const [patronymic, setPatronymic] = useState("");
-    const [organization, setOrganization] = useState("");
-    const [email, setEmail] = useState("");
+/** Компонент приветственного окна */
+const HelloWindow: FC<HelloWindowProps> = (props) => {
+    const { delayRender } = props;
+    const [render, setRender] = useState(false);
+    const { 
+        name,
+        email,
+        surname,
+        patronymic,
+        organization,
+        handleNameChange,
+        handleEmailChange, 
+        handleSurnameChange,
+        handlePatronymicChange,
+        handleOrganizationChange,
+    } = useHelloWindowDataInput();
 
-    const handleNameChange = useCallback((event) => {
-        const { value } = event.target;
-        setName(value);
-    }, []);
+    const stubAnimationSettings: AnimationSettings = { 
+        name: 'bounceInLeft', 
+        count: 1, 
+        time: 2
+    };
 
-    const handleSurnameChange = useCallback((event) => {
-        const { value } = event.target;
-        setSurname(value);
-    }, []);
+    const renderAnimationSettings: AnimationSettings = { 
+        name: 'fadeIn', 
+        count: 1, 
+        time: 5
+    };
 
-    const handlePatronymicChange = useCallback((event) => {
-        const { value } = event.target;
-        setPatronymic(value);
-    }, []);
-
-    const handleOrganizationChange = useCallback((event) => {
-        const { value } = event.target;
-        setOrganization(value);
-    }, []);
-
-    const handleEmailChange = useCallback((event) => {
-        const { value } = event.target;
-        setEmail(value);
-    }, []);
+    setTimeout(() => {
+        setRender(true);
+    }, delayRender + 500);
 
     return(
-        <Maincontainer>
-            <Header useGlitch type={HeaderTypes.Head2}>Привет!</Header>
-            <InputContainer>
-                <Header useGlitch type={HeaderTypes.Head3}>Имя:</Header>
-                <Input value={name} onChange={handleNameChange} placeholder="Введите текст..." />
-            </InputContainer>
-            <InputContainer>
-                <Header useGlitch type={HeaderTypes.Head3}>Фамилия:</Header>
-                <Input value={surname} onChange={handleSurnameChange} placeholder="Введите текст..." />
-            </InputContainer>
-            <InputContainer>
-                <Header useGlitch type={HeaderTypes.Head3}>Отчество:</Header>
-                <Input value={patronymic} onChange={handlePatronymicChange} placeholder="Введите текст..." />
-            </InputContainer>
-            <InputContainer>
-                <Header useGlitch type={HeaderTypes.Head3}>Организация:</Header>
-                <Input value={organization} onChange={handleOrganizationChange} placeholder="Введите текст..." />
-            </InputContainer>
-            <InputContainer>
-                <Header useGlitch type={HeaderTypes.Head3}>E-Mail:</Header>
-                <Input value={email} onChange={handleEmailChange} placeholder="Введите текст..." />
-            </InputContainer>
-        </Maincontainer>
+        <MainContainer>
+            {
+                render ? ( 
+                <>
+                    <AnimationWrapper animationSettings={renderAnimationSettings}>
+                        <Header useGlitch type={HeaderTypes.Head2}>Привет!</Header>
+                    </AnimationWrapper>
+                    <InputContainer>
+                        <AnimationWrapper animationSettings={renderAnimationSettings}>
+                            <Header useGlitch type={HeaderTypes.Head3}>Имя:</Header>
+                        </AnimationWrapper>
+                        <AnimationWrapper animationSettings={renderAnimationSettings}>
+                            <Input value={name} onChange={handleNameChange} placeholder="Введите текст..." />
+                        </AnimationWrapper>
+                    </InputContainer>
+                    <InputContainer>
+                        <AnimationWrapper animationSettings={renderAnimationSettings}>
+                            <Header useGlitch type={HeaderTypes.Head3}>Фамилия:</Header>
+                        </AnimationWrapper>
+                        <AnimationWrapper animationSettings={renderAnimationSettings}>
+                            <Input value={surname} onChange={handleSurnameChange} placeholder="Введите текст..." />
+                        </AnimationWrapper>
+                    </InputContainer>
+                    <InputContainer>
+                        <AnimationWrapper animationSettings={renderAnimationSettings}>
+                            <Header useGlitch type={HeaderTypes.Head3}>Отчество:</Header>
+                        </AnimationWrapper>
+                        <AnimationWrapper animationSettings={renderAnimationSettings}>
+                            <Input value={patronymic} onChange={handlePatronymicChange} placeholder="Введите текст..." />
+                        </AnimationWrapper>
+                    </InputContainer>
+                    <InputContainer>
+                        <AnimationWrapper animationSettings={renderAnimationSettings}>
+                            <Header useGlitch type={HeaderTypes.Head3}>Организация:</Header>
+                        </AnimationWrapper>
+                        <AnimationWrapper animationSettings={renderAnimationSettings}>
+                            <Input value={organization} onChange={handleOrganizationChange} placeholder="Введите текст..." />
+                        </AnimationWrapper>
+                    </InputContainer>
+                    <InputContainer>
+                        <AnimationWrapper animationSettings={renderAnimationSettings}>
+                            <Header useGlitch type={HeaderTypes.Head3}>E-Mail:</Header>
+                        </AnimationWrapper>
+                        <AnimationWrapper animationSettings={renderAnimationSettings}>
+                            <Input value={email} onChange={handleEmailChange} placeholder="Введите текст..." />
+                        </AnimationWrapper>
+                    </InputContainer>
+                </>
+                ) : (
+                    <StubContainer>
+                        <ImageStyled src="roundBitWithouBackground.gif" />
+                    </StubContainer>
+                )
+            }
+        </MainContainer>
     );
 };
 

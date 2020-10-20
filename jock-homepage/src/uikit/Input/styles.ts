@@ -11,4 +11,6 @@ export const InputField = styled.input`
     &:focus {
         border: 2px solid #9999FF;
     }
+
+    cursor: url(/cursors/HandWriting.cur), auto;
 `;

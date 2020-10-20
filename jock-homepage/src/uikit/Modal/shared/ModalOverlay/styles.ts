@@ -1,4 +1,5 @@
-import styled, { keyframes } from 'styled-components';
+import styled, { css, FlattenSimpleInterpolation, keyframes } from 'styled-components';
+import { BackgroundTypes, ModalOverlayProps } from './interfaces';
 
 const Gradient = keyframes`
     0% {
@@ -12,17 +13,31 @@ const Gradient = keyframes`
     }
 `;
 
-// background-color: rgba(0, 0, 0, 0.25);
-export const MainContainer = styled.div`
+export const MainContainer = styled.div<ModalOverlayProps>`
+    ${({ backgroundType }): FlattenSimpleInterpolation => {
+        switch (backgroundType) {
+            case BackgroundTypes.GRADIENT:
+                return css`
+                    background: linear-gradient(45deg, rgba(7,0,36,1) 0%, rgba(157,26,182,1) 45%, rgba(0,212,255,1) 100%);
+                    -webkit-animation: ${Gradient} 15s ease infinite;
+                    -moz-animation: ${Gradient} 15s ease infinite;
+                    animation: ${Gradient} 15s ease infinite;
+                `;
+
+            case BackgroundTypes.IMAGE:
+                return css`
+                    background-image: url(background_1.gif);
+                `;
+        
+            default:
+                return css`background: #fff;`;
+        }
+    }}
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(45deg, rgba(7,0,36,1) 0%, rgba(157,26,182,1) 45%, rgba(0,212,255,1) 100%);
-    background-size: 400% 400%;
-    -webkit-animation: ${Gradient} 15s ease infinite;
-    -moz-animation: ${Gradient} 15s ease infinite;
-    animation: ${Gradient} 15s ease infinite;
+    background-size: 100% 100%;
 }
 `;
