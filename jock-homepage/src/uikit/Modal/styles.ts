@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const MainContainer = styled.div`
     position: absolute;
-    background-color: #FFF;
+    background-color: #000;
+    box-shadow: 0 0 10px #fff;
     top: 0;
     bottom: 0;
     left: 0;
