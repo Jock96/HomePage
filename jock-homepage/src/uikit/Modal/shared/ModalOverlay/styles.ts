@@ -26,7 +26,7 @@ export const MainContainer = styled.div<ModalOverlayProps>`
 
             case BackgroundTypes.IMAGE:
                 return css`
-                    background-image: url(background_1.gif);
+                    background-image: url(/gifs/background_1.gif);
                 `;
         
             default:

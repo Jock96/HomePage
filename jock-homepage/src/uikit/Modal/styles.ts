@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { ModalContainerProps } from './interfaces';
 
-export const MainContainer = styled.div`
+export const MainContainer = styled.div<ModalContainerProps>`
     position: absolute;
     background-color: #000;
     box-shadow: 0 0 10px #fff;
@@ -9,8 +10,8 @@ export const MainContainer = styled.div`
     left: 0;
     right: 0;
     margin: auto;
-    width: 600px;
-    height: 400px;
+    width: ${({ width }): string => (width ?? 0).toString()}px;
+    height: ${({ height }): string => (height ?? 0).toString()}px;
     border-radius: 12px;
     padding: 4px;
 `;
