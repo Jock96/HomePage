@@ -1,48 +1,22 @@
 import { useCallback, useState } from 'react';
+import { DEFAULT_STATE, STATE_TYPES } from '../constatnts';
 
 /** Хук управляет состоянием ввода в приветственном окне */
 export function useHelloWindowDataInput() {
-    const [name, setName] = useState("");
-    const [surname, setSurname] = useState("");
-    const [patronymic, setPatronymic] = useState("");
-    const [organization, setOrganization] = useState("");
-    const [email, setEmail] = useState("");
+    const [state, setState] = useState(DEFAULT_STATE);
 
-    const handleNameChange = useCallback((event) => {
+    const handleStateChange = useCallback((event, type: STATE_TYPES) => {
         const { value } = event.target;
-        setName(value);
-    }, []);
-
-    const handleSurnameChange = useCallback((event) => {
-        const { value } = event.target;
-        setSurname(value);
-    }, []);
-
-    const handlePatronymicChange = useCallback((event) => {
-        const { value } = event.target;
-        setPatronymic(value);
-    }, []);
-
-    const handleOrganizationChange = useCallback((event) => {
-        const { value } = event.target;
-        setOrganization(value);
-    }, []);
-
-    const handleEmailChange = useCallback((event) => {
-        const { value } = event.target;
-        setEmail(value);
+        setState((prevState) => {
+            return {
+                ...prevState,
+                [type.toString()]: value,
+            }
+        });
     }, []);
 
     return {
-        name,
-        surname,
-        patronymic,
-        organization,
-        email,
-        handleNameChange,
-        handleSurnameChange,
-        handlePatronymicChange,
-        handleOrganizationChange,
-        handleEmailChange,
+        state,
+        handleStateChange,
     }
 };

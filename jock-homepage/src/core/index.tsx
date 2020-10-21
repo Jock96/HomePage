@@ -13,7 +13,7 @@ export const App: FC = ({ children }) => {
 
   return (
     <div>
-      <Modal backgroundType={BackgroundTypes.IMAGE} isOpen animationSettings={modalAnimationSettings}>
+      <Modal height={500} backgroundType={BackgroundTypes.IMAGE} isOpen animationSettings={modalAnimationSettings}>
         <HelloWindow delayRender={modalAnimationSettings.time * 1000} />
       </Modal>
       {children}

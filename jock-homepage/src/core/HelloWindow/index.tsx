@@ -1,9 +1,9 @@
 import React, { FC, useState, useCallback } from 'react';
 import AnimationWrapper from '../../uikit/Animation';
-import { AnimationSettings } from '../../uikit/Animation/interfaces';
 import Header from '../../uikit/Header';
 import { HeaderTypes } from '../../uikit/Header/interfaces';
 import Input from '../../uikit/Input';
+import { INPUT_DATA_LIST, RENDER_ANIMATION_SETTINGS } from './constatnts';
 import { useHelloWindowDataInput } from './hooks/useHelloWindowDataInput';
 import { HelloWindowProps } from './interfaces';
 import { ImageStyled, InputContainer, MainContainer, StubContainer } from './styles';
@@ -12,30 +12,7 @@ import { ImageStyled, InputContainer, MainContainer, StubContainer } from './sty
 const HelloWindow: FC<HelloWindowProps> = (props) => {
     const { delayRender } = props;
     const [render, setRender] = useState(false);
-    const { 
-        name,
-        email,
-        surname,
-        patronymic,
-        organization,
-        handleNameChange,
-        handleEmailChange, 
-        handleSurnameChange,
-        handlePatronymicChange,
-        handleOrganizationChange,
-    } = useHelloWindowDataInput();
-
-    const stubAnimationSettings: AnimationSettings = { 
-        name: 'bounceInLeft', 
-        count: 1, 
-        time: 2
-    };
-
-    const renderAnimationSettings: AnimationSettings = { 
-        name: 'fadeIn', 
-        count: 1, 
-        time: 5
-    };
+    const { state, handleStateChange} = useHelloWindowDataInput();
 
     setTimeout(() => {
         setRender(true);
@@ -46,53 +23,27 @@ const HelloWindow: FC<HelloWindowProps> = (props) => {
             {
                 render ? ( 
                 <>
-                    <AnimationWrapper animationSettings={renderAnimationSettings}>
+                    <AnimationWrapper animationSettings={RENDER_ANIMATION_SETTINGS}>
                         <Header useGlitch type={HeaderTypes.Head2}>Привет!</Header>
                     </AnimationWrapper>
-                    <InputContainer>
-                        <AnimationWrapper animationSettings={renderAnimationSettings}>
-                            <Header useGlitch type={HeaderTypes.Head3}>Имя:</Header>
-                        </AnimationWrapper>
-                        <AnimationWrapper animationSettings={renderAnimationSettings}>
-                            <Input value={name} onChange={handleNameChange} placeholder="Введите текст..." />
-                        </AnimationWrapper>
-                    </InputContainer>
-                    <InputContainer>
-                        <AnimationWrapper animationSettings={renderAnimationSettings}>
-                            <Header useGlitch type={HeaderTypes.Head3}>Фамилия:</Header>
-                        </AnimationWrapper>
-                        <AnimationWrapper animationSettings={renderAnimationSettings}>
-                            <Input value={surname} onChange={handleSurnameChange} placeholder="Введите текст..." />
-                        </AnimationWrapper>
-                    </InputContainer>
-                    <InputContainer>
-                        <AnimationWrapper animationSettings={renderAnimationSettings}>
-                            <Header useGlitch type={HeaderTypes.Head3}>Отчество:</Header>
-                        </AnimationWrapper>
-                        <AnimationWrapper animationSettings={renderAnimationSettings}>
-                            <Input value={patronymic} onChange={handlePatronymicChange} placeholder="Введите текст..." />
-                        </AnimationWrapper>
-                    </InputContainer>
-                    <InputContainer>
-                        <AnimationWrapper animationSettings={renderAnimationSettings}>
-                            <Header useGlitch type={HeaderTypes.Head3}>Организация:</Header>
-                        </AnimationWrapper>
-                        <AnimationWrapper animationSettings={renderAnimationSettings}>
-                            <Input value={organization} onChange={handleOrganizationChange} placeholder="Введите текст..." />
-                        </AnimationWrapper>
-                    </InputContainer>
-                    <InputContainer>
-                        <AnimationWrapper animationSettings={renderAnimationSettings}>
-                            <Header useGlitch type={HeaderTypes.Head3}>E-Mail:</Header>
-                        </AnimationWrapper>
-                        <AnimationWrapper animationSettings={renderAnimationSettings}>
-                            <Input value={email} onChange={handleEmailChange} placeholder="Введите текст..." />
-                        </AnimationWrapper>
-                    </InputContainer>
+                    {
+                        INPUT_DATA_LIST.map(({ label, placeholder, type }) => {
+                            return (
+                                <InputContainer key={type}>
+                                    <AnimationWrapper animationSettings={RENDER_ANIMATION_SETTINGS}>
+                                        <Header useGlitch type={HeaderTypes.Head3}>{label}</Header>
+                                    </AnimationWrapper>
+                                    <AnimationWrapper animationSettings={RENDER_ANIMATION_SETTINGS}>
+                                        <Input isPulsed value={state[type]} onChange={(event) => handleStateChange(event, type)} placeholder={placeholder} />
+                                    </AnimationWrapper>
+                                </InputContainer>
+                            );
+                        })
+                    }
                 </>
                 ) : (
                     <StubContainer>
-                        <ImageStyled src="roundBitWithouBackground.gif" />
+                        <ImageStyled src="/gifs/roundBitWithouBackground.gif" />
                     </StubContainer>
                 )
             }

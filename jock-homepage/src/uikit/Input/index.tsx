@@ -4,9 +4,9 @@ import { InputField } from './styles';
 
 /** Компонент ввода */
 const Input: FC<InputProps> = (props) => {
-    const { value, onChange, placeholder } = props;
+    const { value, onChange, placeholder, isPulsed } = props;
     return(
-        <InputField value={value} onChange={onChange} placeholder={placeholder} />
+        <InputField isPulsed={isPulsed} value={value} onChange={onChange} placeholder={placeholder} />
     );
 }
 
