@@ -3,7 +3,7 @@
  * @param label строковая метка
  */
 export function getPlaceholderByLabel(label: string) {
-    return `Введите ${label}...`;
+    return `Напиши ${label}...`;
 }
 
 /**

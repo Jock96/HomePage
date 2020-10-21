@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { DEFAULT_STATE, STATE_TYPES } from '../constatnts';
+import { DEFAULT_STATE, STATE_TYPES } from '../constants';
 
 /** Хук управляет состоянием ввода в приветственном окне */
 export function useHelloWindowDataInput() {
