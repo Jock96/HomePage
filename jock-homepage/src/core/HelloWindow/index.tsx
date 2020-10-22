@@ -1,20 +1,22 @@
-import React, { FC, useState, useCallback } from 'react';
+import React, { FC, useState } from 'react';
 import AnimationWrapper from '../../uikit/Animation';
+import Button from '../../uikit/Button';
 import Header from '../../uikit/Header';
 import { HeaderTypes } from '../../uikit/Header/interfaces';
 import Input from '../../uikit/Input';
-import { INPUT_DATA_LIST, RENDER_ANIMATION_SETTINGS, HELLO_MESSAGE, INFO_MESSAGE } from './constants';
+import { INPUT_DATA_LIST, RENDER_ANIMATION_SETTINGS, HELLO_MESSAGE, INFO_MESSAGE, SKIP, SUBMIT } from './constants';
 import { useHelloWindowDataInput } from './hooks/useHelloWindowDataInput';
 import { HelloWindowProps } from './interfaces';
 import DelayText from './shared/DelayText';
-import { BreakLine, InputContainer, MainContainer, HeaderContainer } from './styles';
+import { BreakLine, InputContainer, MainContainer, HeaderContainer, FooterContainer } from './styles';
 
 /** Компонент приветственного окна */
 const HelloWindow: FC<HelloWindowProps> = (props) => {
-    const { delayRender } = props;
+    const { delayRender, onSkip } = props;
     const [render, setRender] = useState(false);
     const [isHeaderBreakline, setIsHeaderBreakline] = useState(false);
     const [isFooterBreakLine, setIsFooterBreakLine] = useState(false);
+    const [isFooter, setIsFooter] = useState(false);
     const { state, handleStateChange} = useHelloWindowDataInput();
 
     setTimeout(() => {
@@ -28,6 +30,10 @@ const HelloWindow: FC<HelloWindowProps> = (props) => {
     setTimeout(() => {
         setIsFooterBreakLine(true);
     }, delayRender + 2500);
+
+    setTimeout(() => {
+        setIsFooter(true);
+    }, delayRender + 3000);
 
     return(
         <MainContainer>
@@ -51,6 +57,18 @@ const HelloWindow: FC<HelloWindowProps> = (props) => {
                 })
             }
             <BreakLine isVisible={isFooterBreakLine} />
+            {isFooter &&
+                <AnimationWrapper animationSettings={RENDER_ANIMATION_SETTINGS}>
+                    <FooterContainer>
+                        <Button onClick={onSkip} iconName="sad" >
+                            <Header useGlitch type={HeaderTypes.Head4}>{SKIP}</Header>
+                        </Button>
+                        <Button onClick={() => {}} disabled>
+                            <Header useGlitch type={HeaderTypes.Head4}>{SUBMIT}</Header>
+                        </Button>
+                    </FooterContainer>
+                </AnimationWrapper>
+            }
         </MainContainer>
     );
 };

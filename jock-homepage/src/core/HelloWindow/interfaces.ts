@@ -2,6 +2,8 @@
 export interface HelloWindowProps {
     /** Задержка рендера */
     delayRender: number;
+    /** Коллбек пропуска */
+    onSkip: () => void;
 }
 
 /** Видимость линии */

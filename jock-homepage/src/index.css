@@ -6,6 +6,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   cursor: url(/cursors/Cursor.cur), auto;
+  background: url(/gifs/background_2.gif) no-repeat center top fixed;
+  height: 100%;
+  background-size: cover;
 }
 
 code {

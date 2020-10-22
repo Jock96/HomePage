@@ -57,3 +57,9 @@ export const BreakLine = styled.div<BreakLineProps>`
     background-color: white;
     animation: 2s ${BreakLineAnimation} ease-in-out 1;
 `;
+
+export const FooterContainer = styled.div`
+    display: grid;
+    grid-template-columns: 100px 100px;
+    grid-gap: 392px;
+`;
